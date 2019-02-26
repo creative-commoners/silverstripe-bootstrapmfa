@@ -39,11 +39,7 @@
       "client/src"
     ],
     "modulePaths": [
-      "client/src",
-      "../admin/client/src",
-      "../admin/node_modules",
-      "vendor/silverstripe/admin/client/src",
-      "vendor/silverstripe/admin/node_modules"
+      "client/src"
     ],
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
