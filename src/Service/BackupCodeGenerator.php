@@ -45,15 +45,12 @@ class BackupCodeGenerator implements BackupCodeGeneratorInterface
         $codes = [];
         while (count($codes) < $codeCount) {
             $code = $this->generateCode($charset, $codeLength);
-            if (!in_array($code, $codes)) {
-                $codes[] = $code;
+            if (!isset($codes[$code])) {
+                $codes[$code] = $this->hash($code);
             }
         }
 
-        // Create hashes for the codes
-        $hashedCodes = array_map([$this, 'hash'], $codes);
-
-        return array_combine($codes, $hashedCodes);
+        return $codes;
     }
 
     /**

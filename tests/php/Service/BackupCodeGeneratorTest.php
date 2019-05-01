@@ -4,13 +4,13 @@ namespace SilverStripe\MFA\Service;
 
 use PHPUnit_Framework_MockObject_MockObject;
 use SilverStripe\Dev\SapphireTest;
-use SilverStripe\MFA\Tests\Service\BackupCodeGeneratorTest\MockHashExtension;
+use SilverStripe\MFA\Tests\Service\BackupCodeGeneratorTest\BackupGeneratorTestingExtension;
 
 class BackupCodeGeneratorTest extends SapphireTest
 {
     protected static $required_extensions = [
         BackupCodeGenerator::class => [
-            MockHashExtension::class,
+            BackupGeneratorTestingExtension::class,
         ],
     ];
 
@@ -53,6 +53,20 @@ class BackupCodeGeneratorTest extends SapphireTest
     public function testGenerate()
     {
         $generator = new BackupCodeGenerator();
+        $result = $generator->generate();
+
+        $this->assertCount(3, $result, 'Expected number of codes are generated');
+        foreach ($result as $code => $hash) {
+            $this->assertSame(6, strlen($code), 'Generated codes are of configured length');
+            $this->assertSame(strrev($code), $hash, 'Mock hashing method is used and hash is returned');
+        }
+    }
+
+    public function testGenerateWithDigitOnlyCodes()
+    {
+        $generator = new BackupCodeGenerator();
+        $testingExtension = $generator->getExtensionInstance(BackupGeneratorTestingExtension::class);
+        $testingExtension->enableCharacterSetUpdate = true;
         $result = $generator->generate();
 
         $this->assertCount(3, $result, 'Expected number of codes are generated');
