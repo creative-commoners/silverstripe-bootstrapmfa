@@ -36,7 +36,7 @@
   // Inner content section
   &__content {
     border-radius: $tile-border-radius;
-    box-shadow: $tile-box-shadow;
+    box-shadow: var(--tile-box-shadow);
     padding: $tile-padding;
     width: 100%;
 
@@ -48,7 +48,7 @@
     // When the method is hovered or tabbed into
     &:hover,
     &:focus {
-      background: $tile-border-color-hover;
+      background: var(--tile-border-color-hover);
       cursor: pointer;
     }
   }
@@ -56,7 +56,7 @@
   // When the method is highlighted (via clicking it)
   &--active {
     .mfa-method-tile__content {
-      box-shadow: $tile-box-shadow-active;
+      box-shadow: var(--tile-box-shadow-active);
     }
   }
 
@@ -82,7 +82,8 @@
 
   &__unavailable {
     &-mask {
-      background: $tile-mask-background;
+      border-radius: $tile-border-radius;
+      background: var(--tile-mask-background);
       height: 100%;
       width: 100%;
       left: 0;

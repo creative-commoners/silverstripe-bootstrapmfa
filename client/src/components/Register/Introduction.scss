@@ -6,7 +6,7 @@ $feature-list-title-font-size: 16px;
 $feature-list-title-font-weight: bold;
 
 .mfa-feature-list-title {
-  color: $color-grey-text;
+  color: var(--color-grey-text);
   font-size: $feature-list-title-font-size;
   font-weight: $feature-list-title-font-weight;
   margin-bottom: $feature-list-content-margin;
@@ -19,7 +19,7 @@ $feature-list-title-font-weight: bold;
 }
 
 .mfa-feature-list-item {
-  color: $color-dark-grey-text;
+  color: var(--color-dark-text);
   display: flex;
 
   &__icon {
@@ -29,7 +29,7 @@ $feature-list-title-font-weight: bold;
   }
 
   &__title {
-    color: $color-dark-grey-text;
+    color: var(--color-dark-text);
     line-height: $feature-list-content-line-height;
     margin: 0;
   }
